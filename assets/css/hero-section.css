@@ -1,0 +1,163 @@
+/* Container */
+.hero {
+    --hero-bg: #FFF8F1;
+    background: var(--hero-bg);
+    padding: 0px 0px;
+  }
+  
+  .hero__container {
+    max-width: 100%;
+    margin-left: 5%;
+    /* margin-right:; */
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* left / right */
+    gap: 24px;
+    height: 503px;
+    align-items: center;
+  }
+  
+  /* Left */
+  .hero__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #F89938;
+    color: #0b1f33;
+    margin-top: 50px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: "Atyp Display TRIAL", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .hero__pill-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+  
+  .hero__title {
+    margin: 18px 0 10px;
+    font-family: "Atyp Display TRIAL", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1.05;
+    color: #0C2B4A; /* deep blue like the mock */
+  }
+  
+  .hero__desc {
+    max-width: 620px;
+    color: #6b7280;
+    margin: 8px 0 24px;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  /* Track form */
+  .hero__track {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    background: #fff;
+    margin-bottom: 50px;
+    /* border-radius: 12px; */
+    padding: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    max-width: 640px;
+  }
+  
+  .hero__track-input {
+    border: 0;
+    outline: none;
+    padding: 14px 12px;
+    font-size: 16px;
+    /* border-radius: 8px; */
+    /* background: #f7f7f9; */
+  }
+  
+  .hero__track-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    background: #163D6B;
+    color: #fff;
+    border: 0;
+    /* border-radius: 8px; */
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .hero__track-btn:hover { filter: brightness(1.05); }
+  .hero__track-arrow { transform: translateY(-1px); }
+  
+  /* Right */
+  .hero__right {
+    position: relative;
+    min-height: 360px;
+    display: grid;
+    place-items: end center;
+  }
+  
+  .hero__art {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Contact floating buttons (right side) */
+  .hero__contact {
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    display: grid;
+    gap: 10px;
+  }
+  .hero__contact-btn {
+    width: 46px;
+    height: 46px;
+    /* background: #fff; */
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    /* box-shadow: 0 6px 18px rgba(0,0,0,.12); */
+  }
+  .hero__contact-btn img {
+   
+    object-fit: cover;
+  }
+  @media (min-width: 1200px) {
+    .hero__art {
+      width: 50rem;
+      height: 502px;
+      object-fit: cover;
+      margin-bottom: 5px;
+    }
+  
+  }
+
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .hero__container {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero__track {
+      grid-template-columns: 1fr; /* stack input + button */
+    }
+    .hero__right{
+      display: none;
+    }
+  }
+  
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .hero__left{
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+    

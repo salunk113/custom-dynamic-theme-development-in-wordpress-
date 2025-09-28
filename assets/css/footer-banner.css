@@ -1,0 +1,139 @@
+/* Footer Banner */
+.footer-banner {
+  position: relative;
+  background: #0a1423;
+  /* dark base */
+  color: #ffffff;
+  padding: 0px 0;
+}
+
+.footer-banner.has-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0a1423 0%, #0a1423 55%, transparent 55%);
+  pointer-events: none;
+}
+
+.fb-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: min(1400px, 92%);
+  margin: 0 0px 0px 10%;
+}
+
+.fb-content {
+  flex: 1 1 50%;
+  max-width: 560px;
+  z-index: 1;
+  /* above overlay */
+}
+
+.fb-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+
+  font-size: clamp(30px, 4vw, 46px);
+  /* keeps responsiveness */
+  line-height: 140%;
+
+  margin: 0 0 16px;
+  letter-spacing: 0;
+
+  /* Optional: 'leading-trim' isn’t fully supported yet in browsers */
+  leading-trim: none;
+}
+
+
+.fb-desc {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  /* Regular */
+  font-style: normal;
+
+  font-size: 18px;
+  line-height: 160%;
+
+  color: #d7e1f1;
+  margin: 0 0 28px;
+  letter-spacing: 0;
+
+  /* Experimental, not widely supported yet */
+  leading-trim: none;
+}
+
+
+.fb-btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: #0a1423;
+  text-decoration: none;
+
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+
+  transition: background .2s ease, color .2s ease, transform .08s ease;
+
+  /* Experimental property, not widely supported */
+  leading-trim: none;
+}
+
+
+.fb-btn:hover {
+  background: #f5a524;
+  color: #fff;
+}
+
+.fb-btn:active {
+  transform: translateY(1px);
+}
+
+.fb-image {
+  flex: 1 1 50%;
+}
+
+.fb-image img {
+  width: 100%;
+  height: 400px;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (max-width: 960px) {
+  .footer-banner.has-overlay::before {
+    background: linear-gradient(180deg, #0a1423 0%, #0a1423 45%, transparent 45%);
+
+  }
+
+  .fb-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fb-image {
+    order: -1;
+  }
+
+  .fb-content {
+    max-width: none;
+  }
+  .fb-container{
+    padding: 5%;
+    margin: 0;
+  }
+}

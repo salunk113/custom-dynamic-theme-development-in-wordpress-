@@ -1,0 +1,213 @@
+/* Container */
+.svc {
+    position: relative;
+    background: #ffffff; /* deep navy backdrop */
+    padding: 72px 16px 48px;
+    color: #000000;
+  }
+  .svc__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  /* Decorative */
+  .svc__deco {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+  }
+  .svc__deco--panda { right: -40px; top: 80px; width: 92px; }
+  .svc__deco--square { left: -24px; top: 160px; width: 56px; opacity: .9; }
+  
+  /* Header */
+  .svc__head {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 28px;
+  }
+  .svc__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffeede;
+    /* color: #0b1f33; */
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    text-decoration: none;
+    font-family: "Atyp Display TRIAL", sans-serif;
+  font-weight: 400;
+  font-style: normal; /* instead of "Regular" */
+  font-size: 14px;
+  line-height: 160%; /* you don’t need leading-trim, not widely supported */
+  letter-spacing: 0; /* 0% isn’t valid */
+  text-align: center;
+  color: #F89938; /* put the color property correctly */
+  }
+  .svc__pill-arrow { transform: translateY(1px); }
+  
+  .svc__title {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 600;
+    font-style: normal; /* "Semibold" is controlled by font-weight */
+    font-size: 48px;
+    line-height: 62px; /* numeric value is fine */
+    letter-spacing: 0; /* 0% isn’t valid */
+    text-align: center;
+    margin: 14px 0 10px;
+    color: #0C0D13;
+    /* text-shadow: 0 2px 14px rgba(0,0,0,.25); */
+  }
+  
+  .svc__desc {
+    font-family: "Atyp Display TRIAL", sans-serif;
+  font-weight: 400;
+  font-style: normal; /* instead of "Regular" */
+  font-size: 16px;
+  line-height: 160%; /* percentage is fine */
+  letter-spacing: 0; /* 0% → 0 */
+  text-align: center;
+  color: #8F9092; /* fixed syntax */
+    opacity: .85;
+    margin: 0 auto;
+    max-width: 640px;
+  
+  }
+  
+  /* Grid */
+  /* .svc__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .svc__grid .svc__card:nth-child(1) { grid-row: span 2; } tall left card */
+  
+  /* Card */
+  /* .svc__card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #0e2a48;
+    min-height: 240px;
+  } */
+  .svc__card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .svc__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.45) 100%);
+  }
+  
+  .svc__card-link {
+    position: absolute;
+    left: 16px; right: 16px; bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    z-index: 2;
+  }
+  .svc__card-title {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .svc__card-icon, .svc__card-icon-fallback {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: grid; place-items: center;
+    padding: 8px;
+  }
+  .svc__card-icon { object-fit: contain; background: rgba(255,255,255,0.18); }
+  .svc__card-icon-fallback { font-size: 18px; }
+  
+  /* CTA */
+  .svc__cta { display: flex; justify-content: center; margin-top: 28px; }
+  .svc__cta-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #0d3d6b; color: #e6f1ff; text-decoration: none;
+    border-radius: 10px; padding: 12px 18px; font-weight: 600;
+  }
+  .svc__cta-btn:hover { background: #12518f; }
+  
+  /* Responsive */
+  @media (max-width: 980px) {
+    .svc__deco--panda { display: none; }
+    .svc__grid {
+      grid-template-columns: 1fr;
+    }
+    .svc__grid .svc__card:nth-child(1) { grid-row: auto; }
+  }
+  /* GRID */
+.svc__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr; /* left a bit wider */
+    grid-auto-rows: 230px;             /* base row height */
+    gap: 24px;
+  }
+  
+  /* CARDS (let grid set height) */
+  .svc__card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #0e2a48;
+    min-height: 0;       /* ensure grid height wins */
+    height: auto;        /* no fixed heights */
+  }
+  
+  /* EXACT PLACEMENT TO MATCH THE IMAGE */
+  .svc__card:nth-child(1) { /* tall left hero */
+    grid-column: 1;         /* left column */
+    grid-row: 1;   /* two rows tall */
+  }
+  
+  .svc__card:nth-child(2) { /* top-right */
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  
+  .svc__card:nth-child(3) { /* left, next row */
+    grid-column: 2;
+    grid-row: 3;           /* normal (one row tall) */
+  }
+  
+  .svc__card:nth-child(4) { /* bottom-right */
+    grid-column: 1;
+    grid-row: 2 / span 2;
+  }
+  
+  /* IMG FILL */
+  .svc__card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* MOBILE */
+  @media (max-width: 980px) {
+    .svc__grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+    }
+    .svc__card:nth-child(1),
+    .svc__card:nth-child(2),
+    .svc__card:nth-child(3),
+    .svc__card:nth-child(4) {
+      grid-column: auto;
+      grid-row: auto; /* stack naturally */
+    }
+  }
+  

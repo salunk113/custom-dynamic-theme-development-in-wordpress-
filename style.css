@@ -1,0 +1,10 @@
+/*
+Theme Name: My Custom Theme
+Author: You
+Version: 1.0
+*/
+
+.home{
+  margin: 0%;
+}
+html, body { overflow-x: hidden; }

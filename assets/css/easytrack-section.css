@@ -1,0 +1,99 @@
+/* Easy Track section */
+.easytrack {
+    background: #083560; /* deep navy like your screenshot */
+    color: #fff;
+  }
+  
+  .easytrack__inner {
+    max-width: 1200px;
+    margin: 0 5%;
+    padding: 20px 15px;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+  }
+  
+  .easytrack__heading {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 500;       /* Medium weight */
+    font-style: normal;     /* 'Medium' is weight, not style */
+    font-size: 36px;
+    line-height: 45px;
+    letter-spacing: 0;      /* 0% tracking = 0 in CSS */
+  }
+  
+  
+  .easytrack__grid {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 48px;
+  }
+  
+  .easytrack__card {
+    flex: 1 1 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    row-gap: 6px;
+    align-content: start;
+    position: relative;
+    min-width: 0; /* fix overflow */
+  }
+  
+  .easytrack__card.has-divider::after {
+    content: "";
+    position: absolute;
+    right: -24px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: rgba(255,255,255,0.25); /* subtle vertical divider */
+  }
+  
+  .easytrack__icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    grid-row: span 2;
+  }
+  
+  .easytrack__title {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 500;       /* Medium weight */
+    font-style: normal;     /* 'Medium' is not valid for font-style */
+    font-size: 20px;
+    line-height: 100%;      /* keeps it tight, can also use 1 for unitless */
+    letter-spacing: 0;      /* 0% in CSS is just 0 */
+    margin: 0 0 6px;
+  }
+  
+  .easytrack__desc {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 400;       /* Regular */
+    font-style: normal;     /* 'Regular' is weight, not style */
+    font-size: 15px;
+    line-height: 190%;      /* equivalent to 1.9 if you prefer unitless */
+    letter-spacing: 0;      /* 0% = 0 in CSS */
+    margin: 0;              /* reset default <p> margins */
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 980px) {
+    .easytrack__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 28px;
+    }
+    .easytrack__heading{
+        text-align: center;
+    }
+    .easytrack__grid {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .easytrack__card.has-divider::after {
+      display: none;
+    }
+  }
+  

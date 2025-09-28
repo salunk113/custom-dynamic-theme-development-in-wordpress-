@@ -1,0 +1,253 @@
+/* ===== HEADER STYLING ===== */
+.site-header {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+}
+
+/* Logo */
+.header-logo img {
+    max-height: 50px;
+    width: auto;
+}
+
+/* Navigation */
+.header-nav {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    gap: 25px;
+}
+
+.nav-menu li {
+    display: inline-block;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #222;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #f37a1f; /* orange hover like image */
+}
+
+/* Base Menu Styles */
+.header-nav .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    gap: 25px;
+}
+
+.header-nav .nav-menu li {
+    display: inline-block;
+}
+
+/* Menu Link - Default (not active) */
+.header-nav .nav-menu a {
+    text-decoration: none;
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 400;         /* Regular */
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0;
+    text-align: center;
+    color: #0C0D13;           /* Default text color */
+    transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.header-nav .nav-menu a:hover {
+    color: #F89938;
+}
+
+/* Active Menu Item */
+.header-nav .nav-menu .current-menu-item > a,
+.header-nav .nav-menu .current_page_item > a {
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 600;         /* Semibold */
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0;
+    text-align: center;
+    color: #F89938;           /* Active color */
+}
+
+/* Desktop / Default */
+.header-nav .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    gap: 15px; /* space between menu items */
+}
+
+/* Ensure li has no extra margin */
+.header-nav .nav-menu li {
+    margin: 0;
+    padding: 15px;
+}
+
+
+
+/* Button */
+.client-portal-btn {
+    background: #f37a1f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+
+    /* Typography */
+    font-family: "Atyp Display TRIAL", sans-serif;
+    font-weight: 600;       /* semibold */
+    font-size: 14px;
+    line-height: 160%;      /* equal to leading */
+    letter-spacing: 0;      /* no spacing */
+    text-align: center;
+}
+
+
+.client-portal-btn:hover {
+    background: #d66918;
+}
+
+
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-nav {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .client-portal-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* --- Hamburger toggle button --- */
+.menu-toggle {
+    display: none;               /* hidden on desktop */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 32px;
+    height: 28px;
+    padding: 0;
+    gap: 5px;
+}
+.menu-toggle .bar {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #0C0D13;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --- Tablet & Mobile --- */
+@media (max-width: 1124px) {
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;   /* allow nav to drop below */
+        height: auto;
+        padding: 16px 10px;
+    }
+
+    /* Button left */
+    .header-button {
+        order: 3;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* Logo center */
+    .header-logo {
+        order: 2;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+    .header-logo img {
+        max-height: 40px;
+        width: auto;
+    }
+
+    /* Hamburger left */
+    .menu-toggle {
+        order: 1;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        gap: 5px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: 32px;
+        height: 28px;
+        padding: 0;
+    }
+    .menu-toggle .bar {
+        display: block;
+        height: 3px;
+        width: 2rem;
+        background: #0C0D13;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Nav menu hidden by default, drops below when open */
+    .header-nav {
+        order: 4;
+        width: 100%;
+        display: none;
+        margin-top: 12px;
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+    }
+    .header-nav.is-open {
+        display: block;
+    }
+
+    /* Vertical stacked nav items */
+    .header-nav .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-left: 0;
+        margin: 0;
+    }
+}

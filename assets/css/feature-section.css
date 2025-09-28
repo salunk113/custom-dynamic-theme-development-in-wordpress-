@@ -1,0 +1,138 @@
+/* Feature Section styles
+   File: assets/css/feature-section.css */
+
+.fs-section {
+    background: #fff7f0;
+    /* warm very light peach like screenshot */
+    padding: 56px 0 80px;
+    color: #0e1726;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.fs-container {
+    width: min(1200px, 92%);
+    margin: 0 10%;
+}
+
+.fs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #ffe9d6;
+    border: 1px solid #ffd6b3;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.fs-badge__icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.fs-title {
+    margin: 18px 0 28px;
+    font-size: clamp(32px, 4.5vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+/* Grid */
+.fs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .fs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .fs-container{
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .fs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+
+}
+
+/* Cards */
+.fs-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #eceff4;
+    padding: 28px;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fs-card--primary {
+    background: #062b55;
+    /* deep navy */
+    color: #e8f0ff;
+    border: none;
+}
+
+.fs-card__icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.fs-card__icon-left,
+.fs-card__icon-right {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    /* background: #ff9a3d1a; faint tint, overridden in primary */
+}
+
+.fs-card--primary .fs-card__icon-left,
+.fs-card--primary .fs-card__icon-right {
+    /* background: #ff8a2b;    warm orange for primary left icon bg */
+    /* color: #062b55; */
+}
+
+.fs-card__icon-left img,
+.fs-card__icon-right img,
+.fs-card__icon-left svg,
+.fs-card__icon-right svg {
+    width: 38px;
+    height: 38px;
+}
+
+.fs-card__icon-right {
+    background: transparent;
+    color: currentColor;
+}
+
+.fs-card__title {
+    font-size: 20px;
+    margin: 8px 0 10px;
+    font-weight: 700;
+}
+
+.fs-card__desc {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.fs-card--primary .fs-card__desc {
+    opacity: 0.95;
+}
