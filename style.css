@@ -1,6 +1,6 @@
 /*
-Theme Name: My Custom Theme
-Author: You
+Theme Name: Panda theme
+Author: salahudheen
 Version: 1.0
 */
 
@@ -8,3 +8,17 @@ Version: 1.0
   margin: 0%;
 }
 html, body { overflow-x: hidden; }
+
+
+/* Popup base */
+#parcel-track-popup {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.4); z-index: 99999; padding: 16px;
+}
+.parcel-track-popup__box {
+  background: #fff; border-radius: 8px; padding: 20px 24px; max-width: 420px; width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2); text-align: center; font: inherit;
+}
+.parcel-track-popup__box.is-success { border-top: 4px solid #46b450; }
+.parcel-track-popup__box.is-error   { border-top: 4px solid #dc3232; }
+.parcel-track-popup__close { margin-top: 14px; padding: 8px 14px; cursor: pointer; }

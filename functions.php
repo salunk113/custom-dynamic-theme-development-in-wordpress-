@@ -1441,3 +1441,127 @@ add_action('customize_register', function ($wp_customize) {
         'type'    => 'textarea',
     ]);
 });
+
+
+/**
+ * Parcel tracking: CPT + AJAX + validation
+ */
+
+// --- 1. Register the CPT to store numbers in Dashboard ---
+add_action('init', function () {
+    register_post_type('parcel_submission', [
+        'labels' => [
+            'name'          => __('Parcel Submissions', 'your-textdomain'),
+            'singular_name' => __('Parcel Submission', 'your-textdomain'),
+            'menu_name'     => __('Parcel Submissions', 'your-textdomain'),
+        ],
+        'public'       => false,
+        'show_ui'      => true,
+        'show_in_menu' => true,
+        'menu_position'=> 25,
+        'menu_icon'    => 'dashicons-list-view',
+        'supports'     => ['title', 'custom-fields'],
+        'capability_type' => 'post',
+        'map_meta_cap' => true,
+    ]);
+});
+
+// --- 2. Admin list: columns for Parcel Number & IP ---
+add_filter('manage_parcel_submission_posts_columns', function ($cols) {
+    $new = [];
+    foreach ($cols as $k => $v) {
+        if ($k === 'title') { $new[$k] = $v; $new['parcel_number'] = __('Parcel Number', 'your-textdomain'); }
+        else { $new[$k] = $v; }
+    }
+    $new['submitter_ip'] = __('IP Address', 'your-textdomain');
+    return $new;
+});
+add_action('manage_parcel_submission_posts_custom_column', function ($col, $post_id) {
+    if ($col === 'parcel_number') {
+        echo esc_html(get_post_meta($post_id, '_parcel_number', true));
+    } elseif ($col === 'submitter_ip') {
+        echo esc_html(get_post_meta($post_id, '_submitter_ip', true));
+    }
+}, 10, 2);
+
+// --- 3. Enqueue front-end JS + localize data ---
+add_action('wp_enqueue_scripts', function () {
+    // Only enqueue where your form exists; adjust conditional if needed
+    // Example: if ( ! is_front_page() ) return;
+
+    wp_enqueue_script(
+        'parcel-track-js',
+        get_stylesheet_directory_uri() . '/assets/js/parcel-track.js',
+        ['jquery'],
+        filemtime(get_stylesheet_directory() . '/assets/js/parcel-track.js'),
+        true
+    );
+
+    wp_localize_script('parcel-track-js', 'ParcelTrack', [
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('parcel_track_nonce'),
+        // Regex: 8–20 alphanumeric (adjust to your real rule)
+        'pattern' => '^[A-Za-z0-9]{8,20}$',
+        'messages'=> [
+            'invalid' => __('Please enter a valid parcel number (8–20 letters/numbers).', 'your-textdomain'),
+            'success' => __('Parcel found! We\'ve recorded your tracking number.', 'your-textdomain'),
+            'error'   => __('Something went wrong. Please try again.', 'your-textdomain'),
+        ]
+    ]);
+});
+
+// --- 4. AJAX handler: validate + save ---
+add_action('wp_ajax_submit_parcel_tracking', 'yourtheme_submit_parcel_tracking');
+add_action('wp_ajax_nopriv_submit_parcel_tracking', 'yourtheme_submit_parcel_tracking');
+function yourtheme_submit_parcel_tracking() {
+    // Security
+    check_ajax_referer('parcel_track_nonce', 'nonce');
+
+    // Sanitize + validate
+    $tracking = isset($_POST['tracking']) ? sanitize_text_field(wp_unslash($_POST['tracking'])) : '';
+    $pattern  = '/^[A-Za-z0-9]{8,20}$/';
+
+    if ($tracking === '' || !preg_match($pattern, $tracking)) {
+        wp_send_json_error([
+            'message' => __('Invalid parcel number. Use 8–20 letters/numbers.', 'your-textdomain')
+        ], 400);
+    }
+
+    // Store as CPT (title = number for easy scanning)
+    $post_id = wp_insert_post([
+        'post_type'   => 'parcel_submission',
+        'post_status' => 'publish',
+        'post_title'  => $tracking,
+    ], true);
+
+    if (is_wp_error($post_id)) {
+        wp_send_json_error([
+            'message' => __('Could not save the parcel number.', 'your-textdomain')
+        ], 500);
+    }
+
+    // Meta: raw number + IP
+    update_post_meta($post_id, '_parcel_number', $tracking);
+    update_post_meta($post_id, '_submitter_ip', yourtheme_get_user_ip());
+
+    // (Optional) Do other stuff here: send email, push to API, etc.
+
+    wp_send_json_success([
+        'message' => __('Success! Your parcel number has been recorded.', 'your-textdomain'),
+        'post_id' => $post_id,
+    ]);
+}
+
+function yourtheme_get_user_ip() {
+    foreach (['HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','REMOTE_ADDR'] as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ip = sanitize_text_field(wp_unslash($_SERVER[$key]));
+            // If comma-separated list (proxies), take first
+            if (strpos($ip, ',') !== false) {
+                $ip = trim(explode(',', $ip)[0]);
+            }
+            return $ip;
+        }
+    }
+    return '';
+}

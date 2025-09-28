@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Part: Hero Section
  * Place inside: /template-parts/hero-section.php
@@ -47,13 +48,17 @@ $wa_url        = get_theme_mod('hero_whatsapp_url', 'https://wa.me/0000000000');
       <?php endif; ?>
 
       <form class="hero__track" action="<?php echo esc_url($cta_url); ?>" method="get">
-        <label class="screen-reader-text" for="parcel-number"><?php esc_html_e('Parcel number', 'your-textdomain'); ?></label>
-        <input id="parcel-number" class="hero__track-input" type="text" name="tracking" placeholder="<?php echo esc_attr($placeholder); ?>">
+        <label class="screen-reader-text" for="parcel-number">
+          <?php esc_html_e('Parcel number', 'your-textdomain'); ?>
+        </label>
+        <input id="parcel-number" class="hero__track-input" type="text" name="tracking"
+          placeholder="<?php echo esc_attr($placeholder); ?>" inputmode="latin-prose" autocomplete="off">
         <button class="hero__track-btn" type="submit">
           <span><?php echo esc_html($cta_text); ?></span>
           <span class="hero__track-arrow" aria-hidden="true">→</span>
         </button>
       </form>
+
     </div>
 
     <div class="hero__right">
