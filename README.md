@@ -128,3 +128,5 @@ Initial stable release.
 == License ==
 This theme is licensed under the GPL v2 or later.
 You can use it to build commercial or personal projects.
+
+=====

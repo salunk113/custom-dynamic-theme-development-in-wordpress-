@@ -1298,6 +1298,12 @@ add_action('init', function () {
     ]);
 });
 
+
+add_action('after_setup_theme', function () {
+    add_theme_support('post-thumbnails'); // enables Featured image UI
+});
+
+
 /* ===== Custom Fields (Meta Box) ===== */
 add_action('add_meta_boxes', function () {
     add_meta_box(

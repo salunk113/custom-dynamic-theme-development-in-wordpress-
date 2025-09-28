@@ -63,7 +63,7 @@ $wa_url        = get_theme_mod('hero_whatsapp_url', 'https://wa.me/0000000000');
 
     <div class="hero__right">
       <?php if ($right_bg) : ?>
-        <img class="hero__art" src="<?php echo esc_url($right_bg); ?>" alt="" loading="lazy" decoding="async">
+        <img class="hero__art" src="<?php echo esc_url($right_bg); ?>" alt="" loading="eager" fetchpriority="high" decoding="async">
       <?php endif; ?>
 
       <div class="hero__contact">
